@@ -34,7 +34,7 @@ RUN yes | sdkmanager --licenses && \
 # Build stage for Android
 FROM base AS android-builder
 WORKDIR /app
-COPY "PixelPerfect Android/" ./
+COPY ["PixelPerfect Android/", "./"]
 RUN ./gradlew assembleDebug
 
 # Final stage - lightweight runtime
