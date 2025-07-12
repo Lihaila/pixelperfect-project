@@ -1,0 +1,59 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Build iOS app
+      run: |
+        cd "PixelPerfect iOS"
+        xcodebuild -project "PixelPerfect iOS.xcodeproj" \
+          -scheme "PixelPerfect iOS" \
+          -configuration Release \
+          -derivedDataPath build/ \
+          -destination 'generic/platform=iOS' \
+          build
+          
+    - name: Create IPA (unsigned)
+      run: |
+        cd "PixelPerfect iOS"
+        mkdir -p ipa_temp
+        cp -R build/Build/Products/Release-iphoneos/PixelPerfect\ iOS.app ipa_temp/
+        
+        # Create unsigned IPA for testing
+        cd ipa_temp
+        zip -r ../PixelPerfect-iOS.ipa .
+        
+    - name: Upload iOS app artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PixelPerfect-iOS
+        path: PixelPerfect iOS/PixelPerfect-iOS.ipa
+        
+    - name: Upload to release
+      if: github.event_name == 'release'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: PixelPerfect iOS/PixelPerfect-iOS.ipa
+        asset_name: PixelPerfect-iOS.ipa
+        asset_content_type: application/octet-stream

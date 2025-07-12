@@ -1,0 +1,61 @@
+name: Build macOS App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
+        
+    - name: Build macOS app
+      run: |
+        cd "PixelPerfect"
+        xcodebuild -project PixelPerfect.xcodeproj \
+          -scheme PixelPerfect \
+          -configuration Release \
+          -derivedDataPath build/ \
+          build
+          
+    - name: Create DMG
+      run: |
+        cd "PixelPerfect"
+        # Create a temporary directory for DMG contents
+        mkdir -p dmg_temp
+        cp -R build/Build/Products/Release/PixelPerfect.app dmg_temp/
+        
+        # Create DMG
+        hdiutil create -srcfolder dmg_temp \
+          -volname "PixelPerfect" \
+          -format UDZO \
+          -o "PixelPerfect-macOS.dmg"
+          
+    - name: Upload macOS app artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PixelPerfect-macOS
+        path: PixelPerfect/PixelPerfect-macOS.dmg
+        
+    - name: Upload to release
+      if: github.event_name == 'release'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: PixelPerfect/PixelPerfect-macOS.dmg
+        asset_name: PixelPerfect-macOS.dmg
+        asset_content_type: application/octet-stream
