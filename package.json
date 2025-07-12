@@ -1,0 +1,42 @@
+{
+  "name": "@lihaila/pixelperfect-project",
+  "version": "1.0.0",
+  "description": "PixelPerfect Cross-Platform Image Optimization Suite",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building PixelPerfect project...'",
+    "test": "echo 'Testing PixelPerfect project...'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lihaila/pixelperfect-project.git"
+  },
+  "keywords": [
+    "image-optimization",
+    "cross-platform",
+    "android",
+    "ios",
+    "macos",
+    "swift",
+    "kotlin",
+    "jetpack-compose",
+    "swiftui"
+  ],
+  "author": "Wader Zhang <wader.zhang@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Lihaila/pixelperfect-project/issues"
+  },
+  "homepage": "https://github.com/Lihaila/pixelperfect-project#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "PixelPerfect/",
+    "PixelPerfect iOS/",
+    "PixelPerfect Android/",
+    "assets/",
+    "screenshots/",
+    "README.md"
+  ]
+}
