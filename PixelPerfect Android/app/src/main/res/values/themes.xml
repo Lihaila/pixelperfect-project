@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PixelPerfect" parent="Theme.AppCompat.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue_500</item>
+        <item name="colorPrimaryDark">@color/blue_700</item>
+        <item name="colorAccent">@color/orange_500</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/blue_700</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

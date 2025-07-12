@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667EEA"/>
+      <stop offset="100%" style="stop-color:#764BA2"/>
+    </linearGradient>
+    <linearGradient id="pixel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ECDC4"/>
+      <stop offset="100%" style="stop-color:#44A08D"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4ECDC4;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#4ECDC4;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="48" height="48" rx="12" fill="url(#bg)"/>
+  
+  <!-- Main pixel cluster -->
+  <g transform="translate(24, 24)">
+    <!-- Center large pixel with glow -->
+    <circle r="8" fill="url(#glow)"/>
+    <rect x="-6" y="-6" width="12" height="12" rx="2" fill="url(#pixel)"/>
+    
+    <!-- Corner pixels -->
+    <rect x="-12" y="-12" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.85"/>
+    <rect x="8" y="-12" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.85"/>
+    <rect x="-12" y="8" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.85"/>
+    <rect x="8" y="8" width="4" height="4" rx="1" fill="#4ECDC4" opacity="0.85"/>
+    
+    <!-- Small accent pixels -->
+    <rect x="3" y="-3" width="2" height="2" rx="0.5" fill="#FFFFFF" opacity="0.9"/>
+    <rect x="-5" y="3" width="2" height="2" rx="0.5" fill="#FFFFFF" opacity="0.9"/>
+    
+    <!-- Focus indicator -->
+    <g transform="translate(9, -9)">
+      <circle r="3" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.9"/>
+      <circle r="2" fill="none" stroke="#4ECDC4" stroke-width="0.5"/>
+      <rect x="2.2" y="2.2" width="2" height="0.6" rx="0.3" fill="#FFFFFF" opacity="0.9" transform="rotate(45 3.2 2.5)"/>
+    </g>
+  </g>
+</svg>

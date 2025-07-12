@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PixelPerfect</string>
+    <string name="home_title">Home</string>
+    <string name="about_title">About</string>
+    <string name="select_image">Select Your Image</string>
+    <string name="choose_photo">Choose Photo</string>
+    <string name="supported_formats">SUPPORTED FORMATS</string>
+    <string name="professional_optimization">Professional Image Optimization</string>
+    <string name="version">Version 1.0.0</string>
+    <string name="copyright">© 2025 PixelPerfect. All rights reserved.</string>
+</resources>
